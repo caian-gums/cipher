@@ -1,13 +1,14 @@
 # caian 12/08/2015
 
 letters = "abcdefghijklmnopqrstuvwxyz"
+signals = " .,!?'\"-\\/<>;:~^()"
 
 def encrypt(m, n):
 	enc_m = ""
 	m_lower = m.lower()
 	letter = 0
 	for i in range(0, len(m)):
-		if m[i] != " ":			
+		if m[i] not in signals:
 			letter = letters.index(m_lower[i])
 			new_letter = (letter + n) % len(letters)
 			if m[i].upper() == m[i]:
@@ -15,7 +16,7 @@ def encrypt(m, n):
 			else:
 				enc_m += str(letters[new_letter])
 		else:
-			enc_m += " "
+			enc_m += str(signals[signals.index(m[i])])
 	return enc_m
 		
 def decrypt(enc_m, n):
